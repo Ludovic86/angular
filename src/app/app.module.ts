@@ -22,6 +22,7 @@ const appRoutes: Routes = [
   { path: 'appareils/:id', canActivate: [AuthGuard], component: SingleAppareilComponent },
 
   { path: 'edit', canActivate: [AuthGuard], component: EditAppareilComponent },
+  //problème ici ? 
 
   { path: 'auth', component: AuthComponent },
 
