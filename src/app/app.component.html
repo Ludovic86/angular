@@ -6,8 +6,12 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li routerLinkActive><a class="nav-link" routerLink="auth">Authentification</a></li>
-      <li routeLinkActive><a class="nav-link" routerLink="appareils">Appareils</a></li>
+      <li routerLinkActive><a class="nav-link" routerLink="appareils">Appareils</a></li>
+      <li routerLinkActive><a class="nav-link" routerLink="edit">Ajouter Appareil</a></li>
     </ul>
+    <div class="navbar-right">
+      Vous êtes connectés depuis {{ secondes }}s
+    </div>
   </div>
 </nav>
 <div class="container">
