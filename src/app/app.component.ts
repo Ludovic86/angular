@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { AppareilService } from './services/appareil.service';
+import { Component, OnInit } from '@angular/core';
+ // import { resolve } from 'dns';
+import { reject } from '../../node_modules/@types/q';
+
 
 @Component({
   selector: 'app-root',
@@ -6,5 +10,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'mon-premier-projet';
+  constructor() {}
+
 }
