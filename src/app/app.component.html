@@ -1,14 +1,17 @@
-<nav class="navbar navbardefault">
-  <div class="container-fluid">
-    <ul class="nav navbar-nav">
-      <li><a href="auth">Authentification</a></li>
-      <li><a href="appareils">Appareils</a></li>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li routerLinkActive><a class="nav-link" routerLink="auth">Authentification</a></li>
+      <li routeLinkActive><a class="nav-link" routerLink="appareils">Appareils</a></li>
     </ul>
   </div>
 </nav>
 <div class="container">
-  <div class="row">
     <router-outlet></router-outlet>
-  </div>
 </div>
+
 
