@@ -1,31 +1,15 @@
 import { Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
+@Injectable()
 export class AppareilService {
 
     appareilSubject = new Subject<any[]>();
 
-   private appareils = [
-        {
-            id: 1,
-            name: 'Machine à laver',
-            status: 'éteint'
-        },
-        {
-            id: 2,
-            name: 'Frigo',
-            status: 'allumé'
-        },
-        {
-            id: 3,
-            name: 'Ordinateur',
-            status: 'éteint'
-        },
-        {
-            id: 4,
-            name: 'TV',
-            status: 'éteint'
-        }
-        ];
+   private appareils = [];
+
+    constructor (private httpClient: HttpClient) {}
 
     emitAppareilSubject() {
         this.appareilSubject.next(this.appareils.slice());
@@ -62,6 +46,47 @@ export class AppareilService {
    switchOffOne(i: number) {
        this.appareils[i].status = 'éteint';
        this.emitAppareilSubject();
+   }
+
+   addAppareil(name: string, status: string) {
+    const appareilObject = {
+        id: 0,
+        name: '',
+        status: ''
+    };
+    appareilObject.name = name;
+    appareilObject.status = status;
+    appareilObject.id = this.appareils[(this.appareils.length - 1)].id + 1;
+    this.appareils.push(appareilObject);
+    this.emitAppareilSubject();
+   }
+
+   saveAppareilToServer() {
+       this.httpClient
+       .put('https://http-client-demo-f32c0.firebaseio.com/appareils.json', this.appareils)
+       .subscribe(
+           () => {
+               console.log('Enregistrement effectué avec succés');
+           },
+           (error) => {
+               console.log('Erreur de sauvegarde !' + error);
+           }
+           );
+   }
+
+   getAppareilsFromServer() {
+       this.httpClient
+       .get<any[]>('https://http-client-demo-f32c0.firebaseio.com/appareils.json')
+       .subscribe(
+           (response) => {
+               this.appareils = response;
+               this.emitAppareilSubject();
+               console.log('Lecture DB');
+           },
+           (error) => {
+               console.log('Une erreur s\'est produite' + error);
+           }
+       );
    }
 
 }
