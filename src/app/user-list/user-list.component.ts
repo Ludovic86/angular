@@ -22,10 +22,13 @@ export class UserListComponent implements OnInit, OnDestroy {
       }
     );
     this.userService.emitUsers();
+    this.userService.getUsersFormServer();
   }
+
 
   ngOnDestroy() {
     this.userSubscription.unsubscribe();
+    this.userService.emitUsers();
   }
 
 }

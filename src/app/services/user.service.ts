@@ -6,24 +6,11 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class UserService {
 
-    userSubject = new Subject<User[]>();
+    userSubject = new Subject<any[]>();
 
-    private users: User[] = [
-        {
-            firstName: 'James',
-            lastname: 'Smith',
-            email: 'james@smith.com',
-            drinkPreferences: 'Coca',
-            hobbies: [
-                'Coder',
-                'Jeux Vidéo',
-                'Boire du Café'
-            ]
-        }
-    ];
+    private users: User[] = [];
 
     constructor (private httpClient: HttpClient) {}
-
 
     emitUsers() {
         this.userSubject.next(this.users.slice());
